@@ -236,7 +236,7 @@ public class layout extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -330,8 +330,9 @@ public class layout extends javax.swing.JFrame {
         if ((tela[4].equals("")==false)){
              tela[0]=tela[4];
              tela[4]="";
+             TFtela.setText(tela[0]);
         }
-        TFtela.setText(tela[0]);
+        
         if(tela[0].equals("")){
           
       }else{
@@ -351,8 +352,9 @@ public class layout extends javax.swing.JFrame {
         if ((tela[4].equals("")==false)){
              tela[0]=tela[4];
              tela[4]="";
+             TFtela.setText(tela[0]);
         }
-        TFtela.setText(tela[0]);
+        
         if(tela[0].equals("")){
           
          }else{
@@ -372,8 +374,9 @@ public class layout extends javax.swing.JFrame {
         if ((tela[4].equals("")==false)){
              tela[0]=tela[4];
              tela[4]="";
+             TFtela.setText(tela[0]);
         }
-        TFtela.setText(tela[0]);
+        
        if(tela[0].equals("")){
           
       }else{ 
@@ -403,16 +406,16 @@ public class layout extends javax.swing.JFrame {
          if ((tela[4].equals("")==false)){
              tela[0]=tela[4];
              tela[4]="";
+             TFtela.setText(tela[0]);
         }
-        TFtela.setText(tela[0]);
-        
+               
       if(tela[0].equals("")){
           
       }else{
           
        if(tela[1].equals("")){
        tela[1] = "+";
-       tela[0]=TFtela.getText();    
+           
        }else{
        tela[0]=fazerResultado(tela);
        tela[1]="+";
@@ -428,7 +431,7 @@ if ((tela[4].equals("")==false)){
         }
         if(tela[0].equals("")){                      
             tela[0]="7";          
-        }else if((tela[0].equals(""))&&(tela[1].equals(""))){
+        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
         tela[0]=(tela[0]+"7");
         }else if(tela[2].equals("")){
             tela[2]="7";           
@@ -444,7 +447,7 @@ if ((tela[4].equals("")==false)){
         }
         if(tela[0].equals("")){                      
             tela[0]="8";          
-        }else if((tela[0].equals(""))&&(tela[1].equals(""))){
+        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
         tela[0]=(tela[0]+"8");
         }else if(tela[2].equals("")){
             tela[2]="8";           
@@ -460,7 +463,7 @@ if ((tela[4].equals("")==false)){
         }
         if(tela[0].equals("")){                      
             tela[0]="9";          
-        }else if((tela[0].equals(""))&&(tela[1].equals(""))){
+        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
         tela[0]=(tela[0]+"9");
         }else if(tela[2].equals("")){
             tela[2]="9";           
@@ -476,7 +479,7 @@ if ((tela[4].equals("")==false)){
         }
         if(tela[0].equals("")){                      
             tela[0]="4";          
-        }else if((tela[0].equals(""))&&(tela[1].equals(""))){
+        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
         tela[0]=(tela[0]+"4");
         }else if(tela[2].equals("")){
             tela[2]="4";           
@@ -492,7 +495,7 @@ if ((tela[4].equals("")==false)){
         }
         if(tela[0].equals("")){                      
             tela[0]="5";          
-        }else if((tela[0].equals(""))&&(tela[1].equals(""))){
+        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
         tela[0]=(tela[0]+"5");
         }else if(tela[2].equals("")){
             tela[2]="5";           
@@ -524,7 +527,7 @@ if ((tela[4].equals("")==false)){
         }
         if(tela[0].equals("")){                      
             tela[0]="1";          
-        }else if((tela[0].equals(""))&&(tela[1].equals(""))){
+        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
         tela[0]=(tela[0]+"1");
         }else if(tela[2].equals("")){
             tela[2]="1";           
@@ -540,7 +543,7 @@ if ((tela[4].equals("")==false)){
         }
         if(tela[0].equals("")){                      
             tela[0]="2";          
-        }else if((tela[0].equals(""))&&(tela[1].equals(""))){
+        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
         tela[0]=(tela[0]+"2");
         }else if(tela[2].equals("")){
             tela[2]="2";           
@@ -556,7 +559,7 @@ if ((tela[4].equals("")==false)){
         }
         if(tela[0].equals("")){                      
             tela[0]="3";          
-        }else if((tela[0].equals(""))&&(tela[1].equals(""))){
+        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
         tela[0]=(tela[0]+"3");
         }else if(tela[2].equals("")){
             tela[2]="3";           
