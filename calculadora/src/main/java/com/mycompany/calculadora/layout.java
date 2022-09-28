@@ -191,7 +191,7 @@ public class layout extends javax.swing.JFrame {
             }
         });
 
-        jButton19.setText(",");
+        jButton19.setText(".");
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton19ActionPerformed(evt);
@@ -343,6 +343,7 @@ public class layout extends javax.swing.JFrame {
        }else{
        tela[0]=fazerResultado(tela);
        tela[1]="/";
+       tela[2]="";
        }
           TFtela.setText(tela[0]+tela[1]);
        }
@@ -365,6 +366,7 @@ public class layout extends javax.swing.JFrame {
        }else{
        tela[0]=fazerResultado(tela);
        tela[1]="X";
+       tela[2]="";
        }
           TFtela.setText(tela[0]+tela[1]);
         }
@@ -386,6 +388,7 @@ public class layout extends javax.swing.JFrame {
        }else{
        tela[0]=fazerResultado(tela);
        tela[1]="-";
+       tela[2]="";
        }
           TFtela.setText(tela[0]+tela[1]);
        }
@@ -419,8 +422,9 @@ public class layout extends javax.swing.JFrame {
        }else{
        tela[0]=fazerResultado(tela);
        tela[1]="+";
+       tela[2]="";
        }
-          TFtela.setText(tela[0]+tela[1]);  
+        TFtela.setText(tela[0]+tela[1]); 
       }
         
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -575,7 +579,16 @@ if ((tela[4].equals("")==false)){
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        TFtela.setText(TFtela.getText()+",");
+        if(tela[0].equals("")){
+            tela[0]=("0.");           
+        }else if(((tela[0].equals(""))==false)&&(tela[1].equals(""))){
+            tela[0]=(tela[0]+".");
+        }else if(((tela[0].equals(""))==false)&&(tela[1].equals("")==false)&&(tela[2].equals(""))){
+            tela[2]=("0.");
+        }else{
+            tela[2]=(tela[2]+".");
+        }
+        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);  
     }//GEN-LAST:event_jButton19ActionPerformed
 
     /**
