@@ -574,8 +574,19 @@ if ((tela[4].equals("")==false)){
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
-        TFtela.setText(TFtela.getText()+"0");
+       if ((tela[4].equals("")==false)){
+            tela[4]="";
+        }
+        if(tela[0].equals("")){                      
+            tela[0]="0";          
+        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
+        tela[0]=(tela[0]+"0");
+        }else if(tela[2].equals("")){
+            tela[2]="0";           
+        }else{
+            tela[2]=(tela[2]+"0");
+        }
+        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
