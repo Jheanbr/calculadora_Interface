@@ -8,73 +8,126 @@ public class layout extends javax.swing.JFrame {
     public layout() {
         initComponents();
     }
-        
-    String tela[] = {"", "", "", "", ""};
-                    
+      //A calculadora funciona com base no Vetor Tela[], ele é usado para armazenar e exibir todos os dados do sistema.
+      //Orienta tanto o que esta sendo exibido quanto suas operaçoes
+       //O Index [0] será sempre o primeiro número exibido.
+       //O Index [1] será sempre o operador da conta.
+       //O Index [2] será sempre o segundo número exibido.
+       //O Index [3] ainda não tem função, a ser implementado com a expansão do projeto.
+       //O Index [4] será sempre o resultado da conta. 
+        String tela[] = {"", "", "", "", ""};
+       
+    //Função que efetua a conta da calculadora e retorna o valor em string para o que for necessário.
     public String fazerResultado(String []tela){
+      
         double resultado= 0;
         double numero1=Double.parseDouble(tela[0]) ;
         double numero2=Double.parseDouble(tela[2]) ;
         switch (tela[1]) {
-            case "+":
-                resultado = numero1 + numero2 ;
-                break;
-            case "-":
-                resultado = numero1 - numero2 ;
-                break;
-            case "/":
-                resultado = numero1 / numero2 ;
-                break;
-            case "X":
-                resultado = numero1 * numero2 ;
-                break;
-            default:
-                break;
-        }
-        
+            case "+" -> resultado = numero1 + numero2 ;
+            case "-" -> resultado = numero1 - numero2 ;
+            case "/" -> resultado = numero1 / numero2 ;
+            case "X" -> resultado = numero1 * numero2 ;
+            default -> {
+            }
+        }      
         String solucao= String.valueOf(resultado);
         return solucao;
     }
+    //Metodo que recebe o valor do numero e o insere no vetor Tela[] em sua posição correta.
+    public void Numeros(String num){
+        verificarResultado();
+        
+        //Verifica a situação do vetor: se não há números e ele é o primeiro; se não for o primeiro, concatenando ao anterior;
+        //Se já há operador, assim sendo adicionado como o segundo número da operação;havendo operador e segudno número, concatena com o mesmo.
+        if(tela[0].equals("")){                      
+            tela[0]=num;          
+        }else if((!tela[0].equals(""))&&(tela[1].equals(""))){
+        tela[0]=(tela[0]+num);
+        }else if(tela[2].equals("")){
+            tela[2]=num;           
+        }else{
+            tela[2]=(tela[2]+num);
+        }
+        exibirTela(); 
+    }    
+     //Metodo que recebe o sinal da operação e o insere no vetor Tela[] em sua posição correta.
+     public void Operacao(String op){
+         verificarResultado();
+          
+        if(tela[0].equals("")){ 
+            //Não faz nada pois não tem o primeiro número, futuramente algum tipo de erro pode ser exibido
+      }else{       
+        if(tela[1].equals("")){
+       tela[1] = op;
+        }else if(!(tela[1].equals(""))&&((tela[2].equals("")))){
+      //não faz nada pois não tem um segundo número, futuramente algum tipo de erro pode ser exibido
+       }else{
+       tela[0]=fazerResultado(tela);
+       tela[1]=op;
+       tela[2]="";
+       }
+          exibirTela();
+       }
+    } 
+     //Metodo para exibir a tela,
+     public void exibirTela(){
+         TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
+    }
+     
+     //Metodo para verificar se o que está sendo exibido é um resultado (o qual é guardado na "tela[4]"), 
+     //e se sim joga ele para a posição tela[0] para poder usar o resultado da anterior com outra conta.
+     public void verificarResultado(){
+         if (!tela[4].equals("")){
+             if(tela[4].endsWith(".0")){
+                 tela [4]= tela[4].replace(".0", "");
+             }
+             tela[0]=tela[4];
+             tela[4]="";
+             exibirTela();
+        }   
+    }
+             
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        BtC = new javax.swing.JButton();
+        BtDel = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        BtDividir = new javax.swing.JButton();
+        BtX = new javax.swing.JButton();
+        BtMenos = new javax.swing.JButton();
+        BtIgual = new javax.swing.JButton();
+        BtMais = new javax.swing.JButton();
+        Bt7 = new javax.swing.JButton();
+        Bt8 = new javax.swing.JButton();
+        Bt9 = new javax.swing.JButton();
+        Bt4 = new javax.swing.JButton();
+        Bt5 = new javax.swing.JButton();
+        Bt6 = new javax.swing.JButton();
         Bt1 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
-        jButton19 = new javax.swing.JButton();
+        Bt2 = new javax.swing.JButton();
+        Bt3 = new javax.swing.JButton();
+        Bt0 = new javax.swing.JButton();
+        BtPonto = new javax.swing.JButton();
         TFtela = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jButton1.setText("C");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BtC.setText("C");
+        BtC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BtCActionPerformed(evt);
             }
         });
 
-        jButton2.setText("DEL");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        BtDel.setText("DEL");
+        BtDel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                BtDelActionPerformed(evt);
             }
         });
 
@@ -85,116 +138,125 @@ public class layout extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("/");
-        jButton4.setActionCommand("/");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        BtDividir.setText("/");
+        BtDividir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                BtDividirActionPerformed(evt);
             }
         });
 
-        jButton5.setText("X");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        BtX.setText("X");
+        BtX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                BtXActionPerformed(evt);
             }
         });
 
-        jButton6.setText("-");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        BtMenos.setText("-");
+        BtMenos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                BtMenosActionPerformed(evt);
             }
         });
 
-        jButton7.setText("=");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        BtIgual.setText("=");
+        BtIgual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                BtIgualActionPerformed(evt);
             }
         });
 
-        jButton8.setText("+");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        BtMais.setText("+");
+        BtMais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                BtMaisActionPerformed(evt);
             }
         });
 
-        jButton9.setText("7");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        Bt7.setText("7");
+        Bt7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                Bt7ActionPerformed(evt);
             }
         });
 
-        jButton10.setText("8");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        Bt8.setText("8");
+        Bt8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                Bt8ActionPerformed(evt);
             }
         });
 
-        jButton11.setText("9");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        Bt9.setText("9");
+        Bt9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                Bt9ActionPerformed(evt);
             }
         });
 
-        jButton12.setText("4");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        Bt4.setText("4");
+        Bt4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                Bt4ActionPerformed(evt);
             }
         });
 
-        jButton13.setText("5");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
+        Bt5.setText("5");
+        Bt5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+                Bt5ActionPerformed(evt);
             }
         });
 
-        jButton14.setText("6");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        Bt6.setText("6");
+        Bt6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                Bt6ActionPerformed(evt);
             }
         });
 
         Bt1.setText("1");
+        Bt1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                apertou(evt);
+            }
+        });
         Bt1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Bt1ActionPerformed(evt);
             }
         });
-
-        jButton16.setText("2");
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+        Bt1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                press(evt);
             }
         });
 
-        jButton17.setText("3");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        Bt2.setText("2");
+        Bt2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                Bt2ActionPerformed(evt);
             }
         });
 
-        jButton18.setText("0");
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
+        Bt3.setText("3");
+        Bt3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
+                Bt3ActionPerformed(evt);
             }
         });
 
-        jButton19.setText(".");
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
+        Bt0.setText("0");
+        Bt0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
+                Bt0ActionPerformed(evt);
+            }
+        });
+
+        BtPonto.setText(".");
+        BtPonto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtPontoActionPerformed(evt);
             }
         });
 
@@ -213,42 +275,42 @@ public class layout extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BtC, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BtDel, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Bt7, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Bt8, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Bt9, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Bt4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Bt5, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(Bt6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Bt1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Bt0, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(BtPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Bt2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(Bt3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(BtX, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtDividir, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtMenos, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtMais, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BtIgual, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -258,349 +320,165 @@ public class layout extends javax.swing.JFrame {
                 .addComponent(TFtela, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtC, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtDel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtDividir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtX, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Bt7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Bt8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Bt9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtMenos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Bt4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Bt5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Bt6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtMais, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Bt1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Bt2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Bt3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Bt0, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtPonto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtIgual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    //Botão que apaga tudo de uma vez.
+    private void BtCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtCActionPerformed
         tela[0] ="";
         tela[1] ="";
         tela[2] ="";
         tela[3] ="";
         tela[4] ="";
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(tela[4].equals("")==false){
-            tela[4]="";
-            TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-        }else if(tela[3].equals("")==false){
+        exibirTela();    
+    }//GEN-LAST:event_BtCActionPerformed
+        //Botão de apagar o ultimo termo inserido
+        //Varre o vetor de trás para frente e apaga o ultimo dado inserido.
+    private void BtDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtDelActionPerformed
+        if(!tela[4].equals("")){
+            tela[4]="";           
+        }else if(!tela[3].equals("")){
              tela[3]="";
-            TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-        }else if(tela[2].equals("")==false){
+        }else if(!tela[2].equals("")){
              tela[2]="";
-            TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-        }else if(tela[1].equals("")==false){
-             tela[1]="";
-            TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
+        }else if(!tela[1].equals("")){
+             tela[1]="";    
         }else{
-             tela[0]="";
-            TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
+             tela[0]="";       
         }
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
+        exibirTela();
+    }//GEN-LAST:event_BtDelActionPerformed
+    //botão "&", ainda não implementado
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if ((tela[4].equals("")==false)){
-             tela[0]=tela[4];
-             tela[4]="";
-             TFtela.setText(tela[0]);
-        }
-        
-        if(tela[0].equals("")){
-          
-      }else{
-        
-        if(tela[1].equals("")){
-       tela[1] = "/";
-       tela[0]=TFtela.getText();    
-       }else{
-       tela[0]=fazerResultado(tela);
-       tela[1]="/";
-       tela[2]="";
-       }
-          TFtela.setText(tela[0]+tela[1]);
-       }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void BtDividirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtDividirActionPerformed
+        Operacao("/");
+    }//GEN-LAST:event_BtDividirActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if ((tela[4].equals("")==false)){
-             tela[0]=tela[4];
-             tela[4]="";
-             TFtela.setText(tela[0]);
-        }
-        
-        if(tela[0].equals("")){
-          
-         }else{
-        
-        if(tela[1].equals("")){
-       tela[1] = "X";
-       tela[0]=TFtela.getText();    
-       }else{
-       tela[0]=fazerResultado(tela);
-       tela[1]="X";
-       tela[2]="";
-       }
-          TFtela.setText(tela[0]+tela[1]);
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void BtXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtXActionPerformed
+       Operacao("X");
+    }//GEN-LAST:event_BtXActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        if ((tela[4].equals("")==false)){
-             tela[0]=tela[4];
-             tela[4]="";
-             TFtela.setText(tela[0]);
-        }
-        
-       if(tela[0].equals("")){
-          
-      }else{ 
-        if(tela[1].equals("")){
-       tela[1] = "-";
-       tela[0]=TFtela.getText();    
-       }else{
-       tela[0]=fazerResultado(tela);
-       tela[1]="-";
-       tela[2]="";
-       }
-          TFtela.setText(tela[0]+tela[1]);
-       }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void BtMenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtMenosActionPerformed
+        Operacao("-");
+    }//GEN-LAST:event_BtMenosActionPerformed
+    //Botão de igual, limpa o vetor, insere o resultado chamando a função "fazerResultado", e exibe isso.
+    private void BtIgualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtIgualActionPerformed
+       String resultado = fazerResultado(tela);
+       if(resultado.endsWith(".0")){
+                 resultado= resultado.replace(".0", "");
+             }
+        tela[0] = "";   
+        tela[1] = "";
+        tela[2] = "";
+        tela[3] = "";
+        tela[4] = resultado;
+        exibirTela();
+    }//GEN-LAST:event_BtIgualActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-      String resultado;
-      resultado= fazerResultado(tela);     
-        tela[0] ="";   
-        tela[1] ="";
-        tela[2] ="";
-        tela[3] ="";
-        tela[4] =resultado;
-        TFtela.setText(tela[4]);
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void BtMaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtMaisActionPerformed
+         Operacao("+");          
+    }//GEN-LAST:event_BtMaisActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-         if ((tela[4].equals("")==false)){
-             tela[0]=tela[4];
-             tela[4]="";
-             TFtela.setText(tela[0]);
-        }
-               
-      if(tela[0].equals("")){
-          
-      }else{
-          
-       if(tela[1].equals("")){
-       tela[1] = "+";
-           
-       }else{
-       tela[0]=fazerResultado(tela);
-       tela[1]="+";
-       tela[2]="";
-       }
-        TFtela.setText(tela[0]+tela[1]); 
-      }
-        
-    }//GEN-LAST:event_jButton8ActionPerformed
+    private void Bt7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt7ActionPerformed
+        Numeros("7");
+    }//GEN-LAST:event_Bt7ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-if ((tela[4].equals("")==false)){
-            tela[4]="";
-        }
-        if(tela[0].equals("")){                      
-            tela[0]="7";          
-        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
-        tela[0]=(tela[0]+"7");
-        }else if(tela[2].equals("")){
-            tela[2]="7";           
-        }else{
-            tela[2]=(tela[2]+"7");
-        }
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void Bt8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt8ActionPerformed
+        Numeros("8");
+    }//GEN-LAST:event_Bt8ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-         if ((tela[4].equals("")==false)){
-            tela[4]="";
-        }
-        if(tela[0].equals("")){                      
-            tela[0]="8";          
-        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
-        tela[0]=(tela[0]+"8");
-        }else if(tela[2].equals("")){
-            tela[2]="8";           
-        }else{
-            tela[2]=(tela[2]+"8");
-        }
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void Bt9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt9ActionPerformed
+        Numeros("9");
+    }//GEN-LAST:event_Bt9ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-         if ((tela[4].equals("")==false)){
-            tela[4]="";
-        }
-        if(tela[0].equals("")){                      
-            tela[0]="9";          
-        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
-        tela[0]=(tela[0]+"9");
-        }else if(tela[2].equals("")){
-            tela[2]="9";           
-        }else{
-            tela[2]=(tela[2]+"9");
-        }
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-    }//GEN-LAST:event_jButton11ActionPerformed
+    private void Bt4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt4ActionPerformed
+        Numeros("4");
+    }//GEN-LAST:event_Bt4ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        if ((tela[4].equals("")==false)){
-            tela[4]="";
-        }
-        if(tela[0].equals("")){                      
-            tela[0]="4";          
-        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
-        tela[0]=(tela[0]+"4");
-        }else if(tela[2].equals("")){
-            tela[2]="4";           
-        }else{
-            tela[2]=(tela[2]+"4");
-        }
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-    }//GEN-LAST:event_jButton12ActionPerformed
+    private void Bt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt5ActionPerformed
+        Numeros("5");
+    }//GEN-LAST:event_Bt5ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        if ((tela[4].equals("")==false)){
-            tela[4]="";
-        }
-        if(tela[0].equals("")){                      
-            tela[0]="5";          
-        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
-        tela[0]=(tela[0]+"5");
-        }else if(tela[2].equals("")){
-            tela[2]="5";           
-        }else{
-            tela[2]=(tela[2]+"5");
-        }
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-         if ((tela[4].equals("")==false)){
-            tela[4]="";
-        }
-        if(tela[0].equals("")){                      
-            tela[0]="6";          
-        }else if((tela[0].equals(""))&&(tela[1].equals(""))){
-        tela[0]=(tela[0]+"6");
-        }else if(tela[2].equals("")){
-            tela[2]="6";           
-        }else{
-            tela[2]=(tela[2]+"6");
-        }
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-    }//GEN-LAST:event_jButton14ActionPerformed
+    private void Bt6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt6ActionPerformed
+        Numeros("6");
+    }//GEN-LAST:event_Bt6ActionPerformed
 
     private void Bt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt1ActionPerformed
-        if ((tela[4].equals("")==false)){
-            tela[4]="";
-        }
-        if(tela[0].equals("")){                      
-            tela[0]="1";          
-        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
-        tela[0]=(tela[0]+"1");
-        }else if(tela[2].equals("")){
-            tela[2]="1";           
-        }else{
-            tela[2]=(tela[2]+"1");
-        }
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);  
+        Numeros("1"); 
     }//GEN-LAST:event_Bt1ActionPerformed
 
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        if ((tela[4].equals("")==false)){
-            tela[4]="";
-        }
-        if(tela[0].equals("")){                      
-            tela[0]="2";          
-        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
-        tela[0]=(tela[0]+"2");
-        }else if(tela[2].equals("")){
-            tela[2]="2";           
-        }else{
-            tela[2]=(tela[2]+"2");
-        }
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-    }//GEN-LAST:event_jButton16ActionPerformed
+    private void Bt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt2ActionPerformed
+        Numeros("2");
+    }//GEN-LAST:event_Bt2ActionPerformed
 
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-       if ((tela[4].equals("")==false)){
-            tela[4]="";
-        }
-        if(tela[0].equals("")){                      
-            tela[0]="3";          
-        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
-        tela[0]=(tela[0]+"3");
-        }else if(tela[2].equals("")){
-            tela[2]="3";           
-        }else{
-            tela[2]=(tela[2]+"3");
-        }
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-    }//GEN-LAST:event_jButton17ActionPerformed
+    private void Bt3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt3ActionPerformed
+       Numeros("3");
+    }//GEN-LAST:event_Bt3ActionPerformed
 
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-       if ((tela[4].equals("")==false)){
-            tela[4]="";
-        }
-        if(tela[0].equals("")){                      
-            tela[0]="0";          
-        }else if((tela[0].equals("")==false)&&(tela[1].equals(""))){
-        tela[0]=(tela[0]+"0");
-        }else if(tela[2].equals("")){
-            tela[2]="0";           
-        }else{
-            tela[2]=(tela[2]+"0");
-        }
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);
-    }//GEN-LAST:event_jButton18ActionPerformed
-
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+    private void Bt0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt0ActionPerformed
+       Numeros("0");
+    }//GEN-LAST:event_Bt0ActionPerformed
+    //botão para inserir o "." no valor, fazedo assim os valores decimais poderem serem inseridos.
+    private void BtPontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtPontoActionPerformed
+       
+        verificarResultado();       
+        
         if(tela[0].equals("")){
             tela[0]=("0.");           
-        }else if(((tela[0].equals(""))==false)&&(tela[1].equals(""))){
+        }else if((tela[1].equals(""))){
+            if(!tela[0].contains(".")){
             tela[0]=(tela[0]+".");
-        }else if(((tela[0].equals(""))==false)&&(tela[1].equals("")==false)&&(tela[2].equals(""))){
+            }
+        }else if((tela[2].equals(""))){
             tela[2]=("0.");
         }else{
+            if (!tela[2].contains(".")){
             tela[2]=(tela[2]+".");
+            }
         }
-        TFtela.setText(tela[0]+tela[1]+tela[2]+tela[3]+tela[4]);  
-    }//GEN-LAST:event_jButton19ActionPerformed
+        exibirTela(); 
+    }//GEN-LAST:event_BtPontoActionPerformed
+
+    private void apertou(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apertou
+        // TODO add your handling code here:
+    }//GEN-LAST:event_apertou
+
+    private void press(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_press
+        
+    }//GEN-LAST:event_press
 
     /**
      * @param args the command line arguments
@@ -638,25 +516,25 @@ if ((tela[4].equals("")==false)){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Bt0;
     private javax.swing.JButton Bt1;
+    private javax.swing.JButton Bt2;
+    private javax.swing.JButton Bt3;
+    private javax.swing.JButton Bt4;
+    private javax.swing.JButton Bt5;
+    private javax.swing.JButton Bt6;
+    private javax.swing.JButton Bt7;
+    private javax.swing.JButton Bt8;
+    private javax.swing.JButton Bt9;
+    private javax.swing.JButton BtC;
+    private javax.swing.JButton BtDel;
+    private javax.swing.JButton BtDividir;
+    private javax.swing.JButton BtIgual;
+    private javax.swing.JButton BtMais;
+    private javax.swing.JButton BtMenos;
+    private javax.swing.JButton BtPonto;
+    private javax.swing.JButton BtX;
     private javax.swing.JTextField TFtela;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     // End of variables declaration//GEN-END:variables
 }
