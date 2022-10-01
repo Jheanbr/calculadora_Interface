@@ -5,21 +5,34 @@ Como testar e executar no final do README;
 
 Minha ideia foi criar uma calculadora do 0, usando alguma lógica tirada da minha própia cabeça para exercitar os meus conhecimentos e aprender mais com isso;
 
-No começo eu pensei em usar variaveis comuns para salvar os valores e operações, mas logo no começo achei que poderia ser mais facil usar um vetor;
+No começo eu pensei em usar variaveis comuns para salvar os valores e operações, mas logo no começo achei que poderia ser mais fácil usar um vetor;
 Mas primeiramente fiz o JFrame bem simples para poder só depois começar a parte de programação em si;
 
-Nisso eu criei o Vetor "Tela" que inicialmente ia ser aonde eu ia guardar os dados para exibir na TextLabel, e após pensar bem, ele se tornou mais que so um exibidor;
+<p align="center">
+<img src="https://i.imgur.com/Hjlb49r.png"/>
+</p>
 
-O Vetor "Tela" guarda o primeiro número no Index[0], o operador no Index[1], o segundo número no Index[2], e o resultado no Index[4];
+<p align="center">
+<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
+</p>
 
-O Index[3] ainda não é usado, mas decidir manter por ainda ter ideias de expandir a calculadora adicionando outros tipos de operação;
+#
 
-O Index[4] salva o resultado, ele é muito temporario, qualquer ação que for feita pelo usuario a apaga e joga o valor para o Index[0], mas ele foi necessario:
+# :hammer: Vetor Tela
 
-Caso ele não existisse dificultaria a lógica do programa e atrapalharia um possivel escalonamamento do projeto, tal como um exibidor do resultado anterior;
+Eu criei um Vetor que inicialmente ia ser aonde eu ia guardar os dados para exibir na TextLabel, e após pensar bem, ele se tornou mais que so um exibidor;
+
+- `Index[0]`: Guarda o primeiro número inserido;
+- `Index[1]`: Guarda o operador da conta;
+- `Index[2]`: Guarda o segundo número inserido;
+- `Index[3]`: Não guarda nada(mantida por ideias de expandir a calculadora);
+- `Index[4]`: Recebe o resultado da conta;
+
+
+O Index[4], é muito temporario, qualquer ação que for feita pelo usuario a apaga e joga o valor para o Index[0], mas ele foi necessário pois, caso ele não existisse, dificultaria a lógica do programa e atrapalharia um possivel escalonamamento do projeto, tal como um exibidor do resultado anterior;
 A minha ideia sempre foi que a calculadora fosse fluida como uma de celular, e que fosse de facil ultilização.
 
-
+#
 
 Nas primeiras Versões ele não tinha métodos ou funções, após algumas implementações repetitivas eu percebi que seria necessário (e muito mais fácil), então eu fiz;
 
@@ -27,10 +40,13 @@ Lembrando que esse é um dos meus primeiros projetos em Java, aonde eu tenho tot
 Não espere o codigo mais eficiente nem complexo e a nem prova de erros;
 
 Minha ideia agora que ela está funcionando (menos por 1 problema que ainda não achei solução), é expandir ela para uma cientifica, podendo fazer outras operações mais complexas;
-![calculadora](https://user-images.githubusercontent.com/90456999/193407984-112cdce2-0294-4b59-8d3b-bdfc75890d5a.png)
-<p align="center">
-<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
-</p>
+
+# 🛠️ Abrir e rodar o projeto
 
 Ambiente utilizado: Apache NetBeans IDE 15 (algumas versões anteriores não executam)
-Abrindo a pasta 
+
+Baixar a pasta do repositório;
+
+Abri no NetBeans;
+
+Dar RUN na classe "Calculadora_Layout";
