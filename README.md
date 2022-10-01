@@ -27,8 +27,8 @@ Lembrando que esse é um dos meus primeiros projetos em Java, aonde eu tenho tot
 Não espere o codigo mais eficiente nem complexo e a nem prova de erros;
 
 Minha ideia agora que ela está funcionando (menos por 1 problema que ainda não achei solução), é expandir ela para uma cientifica, podendo fazer outras operações mais complexas;
-<p align="center">
 ![calculadora](https://user-images.githubusercontent.com/90456999/193407984-112cdce2-0294-4b59-8d3b-bdfc75890d5a.png)
+<p align="center">
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
 
